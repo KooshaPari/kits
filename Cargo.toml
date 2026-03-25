@@ -1,0 +1,72 @@
+# Phenotype Kits Workspace
+# A curated collection of reusable Rust libraries for modern software development
+
+[workspace]
+members = [
+    "clikit",
+    "agentkit",
+    "evalkit",
+    "taskkit",
+    "configkit",
+    "authkit",
+    "cachekit",
+    "logkit",
+    "tracingkit",
+    "metrickit",
+    "eventkit",
+]
+resolver = "2"
+
+# Common dependencies
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async traits
+async-trait = "0.1"
+
+# Threading
+parking_lot = "0.12"
+crossbeam-channel = "0.5"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# CLI
+clap = { version = "4.0", features = ["derive", "env"] }
+
+# Testing
+criterion = "0.5"
+proptest = "1.0"
+tempfile = "3.0"
+
+# Lint and format
+rustfmt = { version = "1.0", default-features = false }
+clippy = { version = "0.1", package = "clippy-utils" }
+
+[workspace.metadata]
+# Package organization
+organization = "KooshaPari"
+license = "MIT OR Apache-2.0"
+
+# Quality gates
+[workspace.lints.rust]
+unsafe_code = "forbid"
+elided_lifetimes_in_paths = "warn"
+explicit_outlives_requirements = "warn"
+
+# Formatting
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
